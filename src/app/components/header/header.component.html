@@ -1,0 +1,54 @@
+<nav class="py-8 px-8">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+        <a href="#" class="flex items-center">
+            <img src="../../../assets/icons8-book-96.png" class="h-8 mr-3" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap">Read Cycle</span>
+        </a>
+        <button (click)="toggleMobileMenu()" data-collapse-toggle="navbar-default" type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+        </button>
+        <div class="hidden lg:flex w-full md:block md:w-auto" id="navbar-default">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                <li>
+                    <a href="#"
+                        class="block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                        aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="#about"
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">About</a>
+                </li>
+                <li>
+                    <a href="#contact"
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-6 lg:hidden" [hidden]="!isMobileMenuOpen">
+            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-50 py-8 px-6">
+                <div class="flex justify-between">
+                    <a href="#" id="logo">
+                        <img srcset="../../../assets/icons8-book-96.png" class="h-10" alt="Logo" />
+                    </a>
+                    <button type="button" class="mx-4" (click)="toggleMobileMenu()">
+                        <i class="fa-solid fa-xmark fa-xl text-gray-500"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col space-y-4 mt-12">
+                    <a href="#" (click)="toggleMobileMenu()"
+                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">Home</a>
+                    <a href="#about" (click)="toggleMobileMenu()"
+                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">About</a>
+                    <a href="#contact" (click)="toggleMobileMenu()"
+                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

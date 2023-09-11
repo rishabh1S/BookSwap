@@ -1,0 +1,16 @@
+.badge{
+    background-color: black;
+    width: 90px;
+    height: 36px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.badge:hover{
+    background-color: rgb(31, 41, 55);
+    transition-duration: 300ms;
+}

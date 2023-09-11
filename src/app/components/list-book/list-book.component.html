@@ -1,0 +1,99 @@
+<!-- <div class="max-w-md mx-auto mt-6 p-6 shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Book Exchange</h2>
+    <form #f="ngForm" (ngSubmit)="addBook(f)">
+        <div class="mb-4">
+            <label for="title" class="block text-gray-600 font-medium">Title</label>
+            <input type="text" id="title" name="title" ngModel required
+                class="rounded-lg px-4 py-2 w-full border focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+            <label for="author" class="block text-gray-600 font-medium">Author</label>
+            <input type="text" id="author" name="author" ngModel required
+                class="rounded-lg px-4 py-2 w-full border focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+            <label for="condition" class="block text-gray-600 font-medium">Condition</label>
+            <input type="text" id="condition" name="condition" ngModel required
+                class="rounded-lg px-4 py-2 w-full border focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-gray-600 font-medium">Description</label>
+            <textarea id="description" name="description" ngModel required
+                class="rounded-lg px-4 py-2 w-full border focus:outline-none focus:border-blue-500 resize-none"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="coverImage" class="block text-gray-600 font-medium">Book Cover Image URL</label>
+            <input type="text" id="coverImage" name="coverImage" ngModel
+                class="rounded-lg px-4 py-2 w-full border focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mt-6">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg">List
+                Book</button>
+        </div>
+    </form>
+</div> -->
+
+<app-header></app-header>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="container max-w-screen-lg mx-auto">
+        <div class="grid gap-6 gap-y-4 text-sm grid-cols-1 lg:grid-cols-3">
+            <div class="text-gray-600">
+                <p class="font-medium text-lg py-2">Book Details</p>
+                <p>Please fill out all the details of the book <br> you want to list.</p>
+            </div>
+            <div class="lg:col-span-2">
+                <form #bookForm="ngForm" (ngSubmit)="addBook(bookForm)">
+                    <div class="grid gap-4 gap-y-4 text-sm grid-cols-1 md:grid-cols-5">
+                        <div class="md:col-span-5">
+                            <label for="title" class="block mb-2 text-sm font-medium text-gray-600">Name of the
+                                Book</label>
+                            <input type="text" id="title" name="title" ngModel required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        </div>
+                        <div class="md:col-span-5">
+                            <label for="author" class="block mb-2 text-sm font-medium text-gray-600">Author's
+                                Name</label>
+                            <input type="text" id="author" name="author" ngModel required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        </div>
+                        <div class="md:col-span-5">
+                            <label for="description"
+                                class="block mb-2 text-sm font-medium text-gray-600">Description</label>
+                            <textarea id="description" name="description" ngModel required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+                        </div>
+                        <div class="md:col-span-5">
+                            <label for="coverImage" class="block mb-2 text-sm font-medium text-gray-600">Book Cover
+                                Image URL</label>
+                            <input type="text" id="coverImage" name="coverImage" ngModel
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+                        <div class="md:col-span-3">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-600">Condition</label>
+                            <label for="condition" class="sr-only">Underline select</label>
+                            <select id="condition" name="condition" ngModel required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 peer">
+                                <option selected>Select the Condition</option>
+                                <option value="New">New</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Acceptable">Acceptable</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="country" class="block mb-2 text-sm font-medium text-gray-600">ISBN</label>
+                            <input name="isbn" id="isbn" ngModel
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        </div>
+                        <div class="md:col-span-5 my-4">
+                            <div class="inline-flex items-end">
+                                <button type="submit"
+                                    class="text-white bg-gradient-to-r from-[#0DBE5E] to-[#0b8b45] hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Publish</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
