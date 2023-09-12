@@ -1,0 +1,33 @@
+<div class="flex flex-col h-screen bg-gray-100">
+    <!-- Chat Messages Container -->
+    <div class="flex-1 overflow-y-auto p-4">
+        <div *ngFor="let msg of messages" class="mb-2 flex justify-end relative">
+            <div class="p-2 rounded-lg bg-[#0DBE5E] text-white max-w-[70%] relative flex">
+                <div class="text-base text-gray-50 px-2">
+                    {{ msg }}
+                </div>
+                <div class="text-sm text-gray-200 mt-auto ml-auto whitespace-nowrap">
+                    <sub>{{ getCurrentTime() }}</sub>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chat Input Section -->
+    <div class="flex items-center justify-between border-t border-gray-300 p-4">
+        <button (click)="toggleEmojiPicker()" class="px-3 py-2 text-gray-700 rounded-full focus:outline-none">
+            <i class="fa-regular fa-face-smile fa-xl"></i>
+        </button>
+        <emoji-mart *ngIf="showEmojiPicker" class="absolute left-4 bottom-16" [title]="'Pick your emoji...'"
+            [emoji]="'point_up'" (emojiClick)="addEmoji($event)"></emoji-mart>
+
+        <input type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Type a message..."
+            class="flex-1 py-2 px-4 border border-gray-300 rounded-full focus:outline-none" />
+        <button (click)="sendMessage()"
+            class="text-white bg-gradient-to-r from-[#0DBE5E] to-[#0b8b45] hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path fill="#FFFFFF"
+                    d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+            </svg>
+        </button>
+    </div>
+</div>

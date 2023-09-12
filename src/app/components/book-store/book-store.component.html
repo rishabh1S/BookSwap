@@ -46,20 +46,21 @@
                 <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
                     <img class="max-h-[200px] group-hover:scale-110 transition duration-300 cursor-pointer"
                         [src]="book.coverImage" alt="{{ book.title }} Image"
-                        (click)="openBookDetailsModal(book.isbn)" />
+                        (click)="openBookDetailsModal(book.isbn, book.userUID)" />
                 </div>
                 <div class="absolute top-5 right-4">
                     <div class="badge bg-gray-900 text-white">{{ book.condition }}</div>
                 </div>
             </div>
             <div class="max-w-80 py-6 flex flex-col gap-1 border border-t-0 px-2">
-                <div class="flex flex-col items-center justify-between font-titleFont">
-                    <h2 class="text-lg text-gray-900 font-bold text-center">{{
+                <div class="flex flex-col gap-1 items-center justify-between font-titleFont">
+                    <h2 class="text-lg text-gray-900 font-bold text-center leading-tight">{{
                         book.title }}</h2>
                     <p class="text-gray-500 text-[14px]">{{ book.author }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <app-book-detail *ngIf="isModalOpen" [isbn]="selectedISBN" (closeModalEvent)="closeModal()"></app-book-detail>
+    <app-book-detail *ngIf="isModalOpen" [isbn]="selectedISBN" [ownerUid]="selectedUserUID"
+        (closeModalEvent)="closeModal()"></app-book-detail>
 </div>

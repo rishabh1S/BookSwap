@@ -17,6 +17,7 @@ export class BookStoreComponent {
   filteredBooks: any[] = [];
   isModalOpen = false; // Track whether the modal is open
   selectedISBN!: string; // Store the selected book's ISBN
+  selectedUserUID!: string;
 
   constructor(
     private firestore: Firestore,
@@ -61,8 +62,9 @@ export class BookStoreComponent {
     });
   }
 
-  openBookDetailsModal(isbn: string) {
+  openBookDetailsModal(isbn: string, userUID: string) {
     this.selectedISBN = isbn;
+    this.selectedUserUID = userUID;
     this.isModalOpen = true;
     console.log('Modal opened for ISBN:', isbn);
   }
