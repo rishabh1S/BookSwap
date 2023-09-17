@@ -5,7 +5,6 @@ import { LandingComponent } from './components/landing/landing.component';
 import { BookStoreComponent } from './components/book-store/book-store.component';
 import { ListBookComponent } from './components/list-book/list-book.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -20,13 +19,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'profile',
+    path: 'profile/:uid',
     component: UserProfileComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'chat/:uid',
-    component: ChatComponent,
     canActivate: [AuthGuard],
   },
 ];

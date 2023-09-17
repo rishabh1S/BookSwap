@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,21 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   isMobileMenuOpen: boolean = false;
-  showAuthenticationModal: boolean = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  onStoreButtonClick() {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/bookStore']);
+    } else {
+    }
   }
 }

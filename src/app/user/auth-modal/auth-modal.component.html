@@ -1,12 +1,12 @@
 <section id="authentication-modal" tabindex="-1" aria-hidden="true" [ngClass]="{'hidden': !showModal}"
-    class="fixed inset-0 z-50 flex justify-center items-center bg-opacity-70 bg-gray-900 backdrop-blur-sm">
+    class="fixed inset-0 z-50 flex justify-center items-center bg-opacity-50 bg-black backdrop-blur-sm">
     <div class="relative w-full max-w-md max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
             <button type="button"
-                class="absolute top-3 right-2.5 text-gray-600 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                class="absolute top-3 right-2.5 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
                 data-modal-hide="authentication-modal" (click)="closeModal.emit()">
-                &#x2715;
+                <span class="text-gray-600 hover:text-gray-900">&#x2715;</span>
                 <span class="sr-only">Close modal</span>
             </button>
             <div class="px-6 py-6 lg:px-8">
@@ -20,17 +20,25 @@
                                 <label class="inline-block mb-2">Email</label>
                                 <input type="email" [(ngModel)]="emailLogin" name="emailLogin" class="block w-full py-1.5 px-3 border border-gray-400 transition
                         duration-500 focus:outline-none rounded bg-transparent
-                        focus:border-indigo-600" placeholder="Enter Email" required />
+                        focus:border-[#0DBE5E] focus:ring-[#0DBE5E]" placeholder="Enter Email" required />
                             </div>
                             <!-- Password -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Password</label>
-                                <input type="password" [(ngModel)]="passwordLogin" name="passwordLogin" class="block w-full py-1.5 px-3 border border-gray-400 transition
-                      duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-600"
-                                    placeholder="Password" required />
+                                <div class="flex items-center justify-between rounded border border-gray-400"
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    <input class="outline-none w-full border-none focus:ring-0 mx-1"
+                                        [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordLogin"
+                                        name="passwordLogin" placeholder="Password" required (focus)="isFocused = true"
+                                        (blur)="isFocused = false" />
+                                    <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
+                                        (click)="togglePassword()"></i>
+                                    <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"
+                                        (click)="togglePassword()"></i>
+                                </div>
                             </div>
-                            <button type="submit" class="my-6 block w-full bg-indigo-600 text-white py-1.5 px-3 rounded transition
-                      hover:bg-indigo-700">
+                            <button type="submit" class="my-6 block w-full bg-[#0DBE5E] text-white py-1.5 px-3 rounded transition
+                      hover:bg-[#1ea65b]">
                                 Submit
                             </button>
                             <hr class="my-6 border-gray-300 w-full">
@@ -53,37 +61,53 @@
                             <!-- Name -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Name</label>
-                                <input type="text" [(ngModel)]="name" name="name" class="block w-full py-1.5 px-3 border border-gray-400 transition
-                        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-600"
-                                    placeholder="Enter Name" />
+                                <input type="text" [(ngModel)]="name" name="name"
+                                    class="block w-full py-1.5 px-3 border border-gray-400 transition
+                        duration-500 focus:outline-none rounded bg-transparent focus:border-[#0DBE5E] focus:ring-[#0DBE5E]" placeholder="Enter Name" />
                             </div>
                             <!-- Email -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Email</label>
-                                <input type="email" [(ngModel)]="emailRegister" name="emailRegister" class="block w-full py-1.5 px-3 border border-gray-400 transition
-                        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-600"
-                                    placeholder="Enter Email" required />
+                                <input type="email" [(ngModel)]="emailRegister" name="emailRegister"
+                                    class="block w-full py-1.5 px-3 border border-gray-400 transition
+                        duration-500 focus:outline-none rounded bg-transparent focus:border-[#0DBE5E] focus:ring-[#0DBE5E]" placeholder="Enter Email" required />
                             </div>
                             <!-- Password -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Password</label>
-                                <input type="password" [(ngModel)]="passwordRegister" name="passwordRegister" class="block w-full py-1.5 px-3 border border-gray-400 transition
-                        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-600"
-                                    placeholder="Password" required />
+                                <div class="flex items-center justify-between rounded border border-gray-400"
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    <input class="outline-none border-none w-full focus:ring-0 mx-1"
+                                        [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordRegister"
+                                        name="passwordRegister" placeholder="Password" required
+                                        (focus)="isFocused = true" (blur)="isFocused = false" />
+                                    <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
+                                        (click)="togglePassword()"></i>
+                                    <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"
+                                        (click)="togglePassword()"></i>
+                                </div>
                             </div>
                             <!-- Confirm Password -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Confirm Password</label>
-                                <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" class="block w-full py-1.5 px-3 border border-gray-400 transition
-                        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-600"
-                                    placeholder="Confirm Password" required />
+                                <div class="flex items-center justify-between rounded border border-gray-400"
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    <input class="outline-none border-none w-full focus:ring-0 mx-1"
+                                        [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword"
+                                        name="confirmPassword" placeholder="Confirm Password" required
+                                        (focus)="isFocused = true" (blur)="isFocused = false" />
+                                    <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
+                                        (click)="togglePassword()"></i>
+                                    <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"
+                                        (click)="togglePassword()"></i>
+                                </div>
                             </div>
-                            <button type="submit" class="my-6 block w-full bg-indigo-600 text-white py-1.5 px-3 rounded transition
-                      hover:bg-indigo-700 disabled:opacity-50">
+                            <button type="submit" class="my-6 block w-full bg-[#0DBE5E] text-white py-1.5 px-3 rounded transition
+                      hover:bg-[#1ea65b] disabled:opacity-50">
                                 Submit
                             </button>
                             <hr class="my-6 border-gray-300 w-full">
-                            <button type="button" (click)="signInWithGoogle()"
+                            <button type="button" (click)="signUpWithGoogle()"
                                 class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg py-2 border border-gray-300">
                                 <div class="flex items-center justify-center">
                                     <div class="google-icon"></div>

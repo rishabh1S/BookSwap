@@ -1,5 +1,5 @@
 <div id="bookDetailsModal" tabindex="-1"
-    class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-sm">
+    class="fixed top-0 left-0 p-4 flex items-center justify-center z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full backdrop-blur-sm">
     <div class="relative w-full max-w-4xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
@@ -22,10 +22,13 @@
                             <h2 class="text-gray-700">{{bookDetails.volumeInfo.publisher}}</h2>
                             <h2 class="text-gray-700">{{bookDetails.volumeInfo.publishedDate}}</h2>
                         </div>
-                        <div class="mt-4">
-                            <button
-                                class="text-white bg-gradient-to-r from-[#0DBE5E] to-[#0b8b45] hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                (click)="contactUser()">Contact Now</button>
+                        <div class="flex gap-2 items-center">
+                            <div class="flex gap-1 items-center">
+                                <img [src]="ownerAvatarUrl" alt="avatar" class="w-12 h-12 rounded-full" />
+                                <h2 class="text-gray-900 font-semibold">@{{ ownerUsername }}</h2>
+                            </div>
+                            <button class="px-3 py-2 text-center" (click)="viewUser()"><i
+                                    class="fa-solid fa-arrow-up-right-from-square text-[#0DBE5E]"></i></button>
                         </div>
                     </div>
                 </div>
