@@ -1,6 +1,6 @@
 <app-header></app-header>
-<div *ngIf="user" class="bg-zinc-100 px-12 py-6">
-    <div class="px-4 sm:px-10 py-4 inline-block">
+<div *ngIf="user" class="bg-zinc-100 px-8 sm:px-12 py-6">
+    <div class="sm:px-10 py-4 text-center sm:text-start">
         <nav class="relative" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="flex items-center">
@@ -25,45 +25,50 @@
             </ol>
         </nav>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-4 sm:gap-10">
         <div class="col-span-1">
-            <div class="flex flex-col items-start justify-center space-y-4 py-6 px-10">
-                <div class="flex items-center space-x-2">
-                    <img [src]="user.avatarUrl" alt="User Avatar" class="w-24 h-24 mx-auto rounded-full" />
-                    <h1 class="text-3xl font-semibold text-gray-800">@{{ user.username }}</h1>
-                    <button *ngIf="isCurrentUserProfile()" class="p-2" (click)="toggleUpdateModal()">
-                        <i class="fa-solid fa-pen text-gray-500"></i>
-                    </button>
+            <div class="flex flex-col items-start justify-center space-y-4 py-6 px-2 sm:px-10">
+                <div class="flex flex-col items-center sm:items-start justify-center gap-1 sm:gap-3">
+                    <div class="flex flex-col sm:flex-row items-center justify-center space-x-2">
+                        <img [src]="user.avatarUrl" alt="User Avatar" class="w-24 h-24 mx-auto rounded-full" />
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-3xl font-semibold text-gray-800">@{{ user.username }}
+                            </h1>
+                            <button *ngIf="isCurrentUserProfile()" class="p-2" (click)="toggleUpdateModal()">
+                                <i class="fa-solid fa-pen text-gray-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h2 class="text-gray-600 text-xl">{{ user.firstName }} {{ user.lastName }}</h2>
                 </div>
-                <h2 class="text-gray-600 text-xl">{{ user.firstName }} {{ user.lastName }}</h2>
                 <div class="border-t border-gray-300 pt-4">
                     <h2 class="text-xl font-semibold">User Information</h2>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600">Gender:</label>
                         <p>{{ user.gender }}</p>
                     </div>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600">Location:</label>
                         <p>{{ user.location }}</p>
                     </div>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600">Birthday:</label>
                         <p>{{ user.birthday | date }}</p>
                     </div>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600">Summary:</label>
                         <p>{{ user.summary }}</p>
                     </div>
                     <h2 class="text-xl font-semibold mt-4">Contact Information</h2>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600"><i class="fa-regular fa-envelope px-1"></i></label>
                         <p>{{ user.userEmail }}</p>
                     </div>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600"><i class="fa-brands fa-instagram px-1"></i></label>
                         <a href="https://www.instagram.com/{{ user.instaId }}" target="_blank">{{ user.instaId }}</a>
                     </div>
-                    <div class="mt-2 flex items-center space-x-2">
+                    <div class="mt-2 flex space-x-2">
                         <label class="text-gray-600"><i class="fa-brands fa-x-twitter px-1"></i></label>
                         <a href="https://twitter.com/{{ user.twitterId }}" target="_blank">{{ user.twitterId }}</a>
                     </div>
@@ -71,9 +76,9 @@
             </div>
         </div>
         <div class="col-span-1">
-            <div class="my-10 mx-10 grid grid-cols-2 gap-8">
+            <div class="my-10 mx-2 sm:mx-10 grid grid-cols-1 lg:grid-cols-2  gap-8">
                 <div class="w-full relative group" *ngFor="let book of user.listedBooks">
-                    <div class="max-w-80 max-h-80 relative overflow-y-hidden bg-gray-50">
+                    <div class="max-w-80 max-h-80 relative overflow-hidden bg-gray-50">
                         <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
                             <img class="max-h-[200px] shadow-md" [src]="book.coverImage" alt="{{ book.title }} Image" />
                         </div>
