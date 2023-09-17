@@ -1,6 +1,4 @@
 <app-header></app-header>
-
-
 <div *ngIf="user" class="bg-zinc-100 px-12 py-6">
     <div class="px-4 sm:px-10 py-4 inline-block">
         <nav class="relative" aria-label="Breadcrumb">
@@ -30,7 +28,6 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-10">
         <div class="col-span-1">
             <div class="flex flex-col items-start justify-center space-y-4 py-6 px-10">
-                <!-- User Avatar and Username -->
                 <div class="flex items-center space-x-2">
                     <img [src]="user.avatarUrl" alt="User Avatar" class="w-24 h-24 mx-auto rounded-full" />
                     <h1 class="text-3xl font-semibold text-gray-800">@{{ user.username }}</h1>
@@ -38,55 +35,34 @@
                         <i class="fa-solid fa-pen text-gray-500"></i>
                     </button>
                 </div>
-
-                <!-- User Name -->
                 <h2 class="text-gray-600 text-xl">{{ user.firstName }} {{ user.lastName }}</h2>
-
-                <!-- User Information -->
                 <div class="border-t border-gray-300 pt-4">
                     <h2 class="text-xl font-semibold">User Information</h2>
-
-                    <!-- Gender -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600">Gender:</label>
                         <p>{{ user.gender }}</p>
                     </div>
-
-                    <!-- Location -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600">Location:</label>
                         <p>{{ user.location }}</p>
                     </div>
-
-                    <!-- Birthday -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600">Birthday:</label>
                         <p>{{ user.birthday | date }}</p>
                     </div>
-
-                    <!-- Summary -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600">Summary:</label>
                         <p>{{ user.summary }}</p>
                     </div>
-
-                    <!-- Additional User Information -->
                     <h2 class="text-xl font-semibold mt-4">Contact Information</h2>
-
-                    <!-- Email -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600"><i class="fa-regular fa-envelope px-1"></i></label>
-
                         <p>{{ user.userEmail }}</p>
                     </div>
-
-                    <!-- Instagram ID -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600"><i class="fa-brands fa-instagram px-1"></i></label>
                         <a href="https://www.instagram.com/{{ user.instaId }}" target="_blank">{{ user.instaId }}</a>
                     </div>
-
-                    <!-- Twitter ID -->
                     <div class="mt-2 flex items-center space-x-2">
                         <label class="text-gray-600"><i class="fa-brands fa-x-twitter px-1"></i></label>
                         <a href="https://twitter.com/{{ user.twitterId }}" target="_blank">{{ user.twitterId }}</a>
