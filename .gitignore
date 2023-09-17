@@ -41,8 +41,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Keys
-/src/environments/
+# Environment File
+environments/
 
 # Firebase
 .firebase
