@@ -21,7 +21,8 @@ export class AuthModalComponent {
   confirmPassword = '';
   name = '';
   showPassword: boolean = false;
-  isFocused: boolean = false;
+  isFocused1: boolean = false;
+  isFocused2: boolean = false;
   @Input() showModal!: boolean;
   @Output() closeModal = new EventEmitter<void>();
 

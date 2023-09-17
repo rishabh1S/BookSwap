@@ -26,11 +26,11 @@
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Password</label>
                                 <div class="flex items-center justify-between rounded border border-gray-400"
-                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused1}">
                                     <input class="outline-none w-full border-none focus:ring-0 mx-1"
                                         [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordLogin"
-                                        name="passwordLogin" placeholder="Password" required (focus)="isFocused = true"
-                                        (blur)="isFocused = false" />
+                                        name="passwordLogin" placeholder="Password" required (focus)="isFocused1 = true"
+                                        (blur)="isFocused1 = false" />
                                     <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
                                         (click)="togglePassword()"></i>
                                     <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"
@@ -76,11 +76,11 @@
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Password</label>
                                 <div class="flex items-center justify-between rounded border border-gray-400"
-                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused1}">
                                     <input class="outline-none border-none w-full focus:ring-0 mx-1"
                                         [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordRegister"
                                         name="passwordRegister" placeholder="Password" required
-                                        (focus)="isFocused = true" (blur)="isFocused = false" />
+                                        (focus)="isFocused1 = true" (blur)="isFocused1 = false" />
                                     <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
                                         (click)="togglePassword()"></i>
                                     <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"
@@ -91,11 +91,11 @@
                             <div class="mb-3">
                                 <label class="inline-block mb-2">Confirm Password</label>
                                 <div class="flex items-center justify-between rounded border border-gray-400"
-                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused}">
+                                    [ngClass]="{'border-[#0DBE5E] ring-1 ring-[#0DBE5E] transition duration-500': isFocused2}">
                                     <input class="outline-none border-none w-full focus:ring-0 mx-1"
                                         [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword"
                                         name="confirmPassword" placeholder="Confirm Password" required
-                                        (focus)="isFocused = true" (blur)="isFocused = false" />
+                                        (focus)="isFocused2 = true" (blur)="isFocused2 = false" />
                                     <i class="fa-regular fa-eye text-gray-400 px-3" *ngIf="!showPassword"
                                         (click)="togglePassword()"></i>
                                     <i class="fa-regular fa-eye-slash text-gray-400 px-3" *ngIf="showPassword"

@@ -1,25 +1,26 @@
 <section class="relative isolate overflow-hidden min-h-screen">
-    <!-- <div *ngIf="showLoading" class="fixed inset-0 flex items-center justify-center z-50 bg-white">
-        <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
-            <div class="w-full">
-                <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
-                <div class="h-2 bg-gray-200 rounded-full max-w-[480px] mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full max-w-[440px] mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full max-w-[460px] mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full max-w-[360px]"></div>
-            </div>
-            <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96">
-                <svg class="w-16 h-16 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor" viewBox="0 0 20 18">
-                    <path
-                        d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z">
-                    </path>
-                </svg>
+    <div class="hidden mt-0 md:flex">
+        <div *ngIf="showLoading" class="fixed inset-0 flex items-center justify-center z-50 bg-white">
+            <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+                <div class="w-full">
+                    <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
+                    <div class="h-2 bg-gray-200 rounded-full max-w-[480px] mb-2.5"></div>
+                    <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+                    <div class="h-2 bg-gray-200 rounded-full max-w-[440px] mb-2.5"></div>
+                    <div class="h-2 bg-gray-200 rounded-full max-w-[460px] mb-2.5"></div>
+                    <div class="h-2 bg-gray-200 rounded-full max-w-[360px]"></div>
+                </div>
+                <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96">
+                    <svg class="w-16 h-16 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 18">
+                        <path
+                            d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z">
+                        </path>
+                    </svg>
+                </div>
             </div>
         </div>
-    </div> -->
-
+    </div>
     <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
         aria-hidden="true">
         <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#0DBE5E] to-[#F8DB39] opacity-30"
@@ -37,12 +38,12 @@
         (closeModal)="showAuthenticationModal = false"></app-auth-modal>
     <section id="home" class="relative">
         <div
-            class="grid gap-4 grid-cols-1 sm:grid-cols-[1.5fr,1.5fr] grid-template-row max-w-screen-xl px-4 py-8 mx-auto lg:py-16">
+            class="grid gap-4 grid-cols-1 lg:grid-cols-[1.5fr,1.5fr] grid-template-row max-w-screen-xl px-4 py-8 mx-auto lg:py-16">
             <div class="font-sans flex flex-col justify-center sm:mb-16 mb-4">
-                <h1 class="mb-8 text-6xl sm:text-4xl font-extrabold tracking-tight leading-normal xl:text-5xl">
+                <h1 class="mb-8 text-5xl font-extrabold tracking-tight leading-none lg:text-5xl">
                     Unlock Knowledge, Share Books: Your Passport to Learning Together!</h1>
                 <button (click)="showAuthenticationModal = true"
-                    class="my-2 flex items-center font-medium text-center text-2xl sm:text-base">
+                    class="my-2 flex items-center font-medium text-center text-xl">
                     Start Your Journey
                     <div class="arrow mx-10 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 -rotate-90">
                         <span></span>
@@ -51,9 +52,9 @@
                     </div>
                 </button>
             </div>
-            <!-- <div class="hidden lg:mt-0 sm:flex">
+            <div class="hidden lg:mt-0 md:flex">
                 <canvas appLazyLoadCanvas #canvas3d id="canvas3d"></canvas>
-            </div> -->
+            </div>
         </div>
     </section>
 </section>
