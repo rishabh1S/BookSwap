@@ -42,7 +42,7 @@ testem.log
 Thumbs.db
 
 # Environment File
-environments/
+/environments
 
 # Firebase
 .firebase
