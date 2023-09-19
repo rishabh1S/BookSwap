@@ -22,7 +22,7 @@ import { ListBookComponent } from './components/list-book/list-book.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { DatePipe } from '@angular/common';
