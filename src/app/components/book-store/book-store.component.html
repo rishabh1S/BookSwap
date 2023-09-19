@@ -1,66 +1,69 @@
 <app-header></app-header>
-<div class="w-full bg-[#F5F5F3] relative">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 h-20">
-        <div
-            class="relative w-60 sm:w-[600px] h-[50px] text-base text-gray-900  flex items-center justify-between rounded-xl">
-            <div class="relative w-full">
-                <input type="search" id="searchTerm" name="searchTerm"
-                    class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-800 focus:border-gray-800"
-                    placeholder="Search by Title, Author name..." required [(ngModel)]="searchTerm"
-                    (input)="searchBooks()">
-            </div>
-        </div>
-        <div class="flex gap-4 items-center cursor-pointer relative">
-            <div (click)="toggleProfileDropdown()" class="flex">
-                <i class="fa-regular fa-user fa-lg text-gray-500"></i>
-                <i class="fa-solid fa-caret-down fa-lg text-gray-500"></i>
-            </div>
-            <div *ngIf="isProfileDropdownOpen"
-                class="absolute top-6 right-0 z-50 bg-primeColor w-52 text-[#767676] h-auto py-1 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-200 rounded-lg">
-                <ul>
-                    <li><a (click)="profileManagement()" class="text-gray-700 block px-4 py-2 hover:bg-gray-100"
-                            tabindex="-1" id="menu-item-1">Profile Management</a></li>
-                    <li><a href="#contact" class="text-gray-700 block px-4 py-2 hover:bg-gray-100" tabindex="-1"
-                            id="menu-item-3">Help and Support</a></li>
-                    <li>
-                        <a routerLink="/listBook"
-                            class="flex items-center px-4 py-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                            Exchange Book
-                        </a>
-                    </li>
-                </ul>
-                <div class="py-1">
-                    <a class="text-gray-700 block px-4 py-2 hover:bg-gray-100" tabindex="-1" id="menu-item-4"
-                        (click)="logout()">Sign out</a>
+<section class="min-h-screen">
+    <div class="w-full bg-[#F5F5F3] relative">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 h-20">
+            <div
+                class="relative w-60 sm:w-[600px] h-[50px] text-base text-gray-900  flex items-center justify-between rounded-xl">
+                <div class="relative w-full">
+                    <input type="search" id="searchTerm" name="searchTerm"
+                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-800 focus:border-gray-800"
+                        placeholder="Search by Title, Author name..." required [(ngModel)]="searchTerm"
+                        (input)="searchBooks()">
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container mx-auto px-4">
-    <div class="my-10 mx-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-        <div class="w-full relative group" *ngFor="let book of filteredBooks">
-            <div class="max-w-80 max-h-80 relative overflow-y-hidden bg-gray-100">
-                <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
-                    <img class="max-h-[200px] group-hover:scale-110 transition duration-300 cursor-pointer"
-                        [src]="book.coverImage" alt="{{ book.title }} Image"
-                        (click)="openBookDetailsModal(book.isbn, book.userUID)" />
+            <div class="flex gap-4 items-center cursor-pointer relative">
+                <div (click)="toggleProfileDropdown()" class="flex">
+                    <i class="fa-regular fa-user fa-lg text-gray-500"></i>
+                    <i class="fa-solid fa-caret-down fa-lg text-gray-500"></i>
                 </div>
-                <div class="absolute top-5 right-4">
-                    <div class="px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-sm font-semibold rounded">{{
-                        book.condition }}
+                <div *ngIf="isProfileDropdownOpen"
+                    class="absolute top-6 right-0 z-50 bg-primeColor w-52 text-[#767676] h-auto py-1 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-200 rounded-lg">
+                    <ul>
+                        <li><a (click)="profileManagement()" class="text-gray-700 block px-4 py-2 hover:bg-gray-100"
+                                tabindex="-1" id="menu-item-1">Profile Management</a></li>
+                        <li><a href="#contact" class="text-gray-700 block px-4 py-2 hover:bg-gray-100" tabindex="-1"
+                                id="menu-item-3">Help and Support</a></li>
+                        <li>
+                            <a routerLink="/listBook"
+                                class="flex items-center px-4 py-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                                Exchange Book
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="py-1">
+                        <a class="text-gray-700 block px-4 py-2 hover:bg-gray-100" tabindex="-1" id="menu-item-4"
+                            (click)="logout()">Sign out</a>
                     </div>
                 </div>
             </div>
-            <div class="max-w-80 py-6 flex flex-col gap-1 border border-t-0 px-2">
-                <div class="flex flex-col gap-1 items-center justify-between font-titleFont">
-                    <h2 class="text-lg text-gray-900 font-bold text-center leading-tight">{{
-                        book.title }}</h2>
-                    <p class="text-gray-500 text-[14px]">{{ book.author }}</p>
+        </div>
+    </div>
+    <div class="container mx-auto px-4">
+        <div class="my-10 mx-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+            <div class="w-full relative group" *ngFor="let book of filteredBooks">
+                <div class="max-w-80 max-h-80 relative overflow-y-hidden bg-gray-100">
+                    <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
+                        <img class="max-h-[200px] group-hover:scale-110 transition duration-300 cursor-pointer"
+                            [src]="book.coverImage" alt="{{ book.title }} Image"
+                            (click)="openBookDetailsModal(book.isbn, book.userUID)" />
+                    </div>
+                    <div class="absolute top-5 right-4">
+                        <div class="px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-sm font-semibold rounded">{{
+                            book.condition }}
+                        </div>
+                    </div>
+                </div>
+                <div class="max-w-80 py-6 flex flex-col gap-1 border border-t-0 px-2">
+                    <div class="flex flex-col gap-1 items-center justify-between font-titleFont">
+                        <h2 class="text-lg text-gray-900 font-bold text-center leading-tight">{{
+                            book.title }}</h2>
+                        <p class="text-gray-500 text-[14px]">{{ book.author }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <app-book-detail *ngIf="isModalOpen" [isbn]="selectedISBN" [ownerUid]="selectedUserUID"
+            (closeModalEvent)="closeModal()"></app-book-detail>
     </div>
-    <app-book-detail *ngIf="isModalOpen" [isbn]="selectedISBN" [ownerUid]="selectedUserUID"
-        (closeModalEvent)="closeModal()"></app-book-detail>
-</div>
+</section>
+<app-footer></app-footer>

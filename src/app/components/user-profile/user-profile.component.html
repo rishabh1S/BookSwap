@@ -1,230 +1,237 @@
 <app-header></app-header>
-<div *ngIf="user" class="bg-zinc-100 px-8 sm:px-12 py-6">
-    <div class="sm:px-10 py-4 text-center sm:text-start">
-        <nav class="relative" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="flex items-center">
-                    <i class="fa-solid fa-house fa-xs text-gray-500"></i>
-                    <a routerLink="/" class="text-sm font-medium text-gray-700 hover:text-[#0DBE5E] md:ml-2">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <i class="fa-solid fa-chevron-right fa-xs text-gray-500"></i>
-                        <a routerLink="/bookStore"
-                            class="ml-1 text-sm font-medium text-gray-700 hover:text-[#0DBE5E] md:ml-2">Book Store</a>
+<section class="min-h-screen bg-gray-100">
+    <div *ngIf="user" class="px-8 sm:px-12 py-6">
+        <div class="sm:px-10 py-4 text-center sm:text-start">
+            <nav class="relative" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="flex items-center">
+                        <i class="fa-solid fa-house fa-xs text-gray-500"></i>
+                        <a routerLink="/" class="text-sm font-medium text-gray-700 hover:text-[#0DBE5E] md:ml-2">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-chevron-right fa-xs text-gray-500"></i>
+                            <a routerLink="/bookStore"
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-[#0DBE5E] md:ml-2">Book
+                                Store</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-chevron-right fa-xs text-gray-500"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Profile</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-4 sm:gap-10">
+            <div class="col-span-1">
+                <div class="flex flex-col items-start justify-center space-y-4 py-6 px-2 sm:px-10">
+                    <div class="flex flex-col items-center sm:items-start justify-center gap-1 sm:gap-3">
+                        <div class="flex flex-col sm:flex-row items-center justify-center space-x-2">
+                            <img [src]="user.avatarUrl" alt="User Avatar" class="w-24 h-24 mx-auto rounded-full" />
+                            <div class="flex items-center justify-between">
+                                <h1 class="text-3xl font-semibold text-gray-800">@{{ user.username }}
+                                </h1>
+                                <button *ngIf="isCurrentUserProfile()" class="p-2" (click)="toggleUpdateModal()">
+                                    <i class="fa-solid fa-pen text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h2 class="text-gray-600 text-xl">{{ user.firstName }} {{ user.lastName }}</h2>
                     </div>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <i class="fa-solid fa-chevron-right fa-xs text-gray-500"></i>
-                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Profile</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-4 sm:gap-10">
-        <div class="col-span-1">
-            <div class="flex flex-col items-start justify-center space-y-4 py-6 px-2 sm:px-10">
-                <div class="flex flex-col items-center sm:items-start justify-center gap-1 sm:gap-3">
-                    <div class="flex flex-col sm:flex-row items-center justify-center space-x-2">
-                        <img [src]="user.avatarUrl" alt="User Avatar" class="w-24 h-24 mx-auto rounded-full" />
-                        <div class="flex items-center justify-between">
-                            <h1 class="text-3xl font-semibold text-gray-800">@{{ user.username }}
-                            </h1>
-                            <button *ngIf="isCurrentUserProfile()" class="p-2" (click)="toggleUpdateModal()">
-                                <i class="fa-solid fa-pen text-gray-500"></i>
-                            </button>
+                    <div class="border-t border-gray-300 pt-4">
+                        <h2 class="text-xl font-semibold">User Information</h2>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600">Gender:</label>
+                            <p>{{ user.gender }}</p>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600">Location:</label>
+                            <p>{{ user.location }}</p>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600">Birthday:</label>
+                            <p>{{ user.birthday | date }}</p>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600">Summary:</label>
+                            <p>{{ user.summary }}</p>
+                        </div>
+                        <h2 class="text-xl font-semibold mt-4">Contact Information</h2>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600"><i class="fa-regular fa-envelope px-1"></i></label>
+                            <p>{{ user.userEmail }}</p>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600"><i class="fa-brands fa-instagram px-1"></i></label>
+                            <a href="https://www.instagram.com/{{ user.instaId }}" target="_blank">{{ user.instaId
+                                }}</a>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <label class="text-gray-600"><i class="fa-brands fa-x-twitter px-1"></i></label>
+                            <a href="https://twitter.com/{{ user.twitterId }}" target="_blank">{{ user.twitterId }}</a>
                         </div>
                     </div>
-                    <h2 class="text-gray-600 text-xl">{{ user.firstName }} {{ user.lastName }}</h2>
                 </div>
-                <div class="border-t border-gray-300 pt-4">
-                    <h2 class="text-xl font-semibold">User Information</h2>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600">Gender:</label>
-                        <p>{{ user.gender }}</p>
-                    </div>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600">Location:</label>
-                        <p>{{ user.location }}</p>
-                    </div>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600">Birthday:</label>
-                        <p>{{ user.birthday | date }}</p>
-                    </div>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600">Summary:</label>
-                        <p>{{ user.summary }}</p>
-                    </div>
-                    <h2 class="text-xl font-semibold mt-4">Contact Information</h2>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600"><i class="fa-regular fa-envelope px-1"></i></label>
-                        <p>{{ user.userEmail }}</p>
-                    </div>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600"><i class="fa-brands fa-instagram px-1"></i></label>
-                        <a href="https://www.instagram.com/{{ user.instaId }}" target="_blank">{{ user.instaId }}</a>
-                    </div>
-                    <div class="mt-2 flex space-x-2">
-                        <label class="text-gray-600"><i class="fa-brands fa-x-twitter px-1"></i></label>
-                        <a href="https://twitter.com/{{ user.twitterId }}" target="_blank">{{ user.twitterId }}</a>
+            </div>
+            <div class="col-span-1">
+                <div class="my-10 mx-2 sm:mx-10 grid grid-cols-1 lg:grid-cols-2  gap-8">
+                    <div class="w-full relative group" *ngFor="let book of user.listedBooks">
+                        <div class="max-w-80 max-h-80 relative overflow-hidden bg-gray-50">
+                            <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
+                                <img class="max-h-[200px] shadow-md" [src]="book.coverImage"
+                                    alt="{{ book.title }} Image" />
+                            </div>
+                            <button *ngIf="!isCurrentUserProfile()" (click)="proposeBookTrade(book)"
+                                class="absolute top-5 right-4"><i
+                                    class="fa-solid fa-envelope px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-base rounded group-hover:scale-110 transition duration-300"></i></button>
+                            <div class="absolute top-5 left-4">
+                                <div
+                                    class="px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-sm font-semibold rounded">
+                                    {{
+                                    book.condition }}</div>
+                            </div>
+                        </div>
+                        <div class="max-w-80 py-6 flex flex-col gap-1 border border-t-0 px-2">
+                            <div class="flex flex-col gap-1 items-center justify-between font-titleFont">
+                                <h2 class="text-lg text-gray-900 font-bold text-center leading-tight">{{ book.title }}
+                                </h2>
+                                <p class="text-gray-500 text-[14px]">{{ book.author }}</p>
+                            </div>
+                        </div>
+                        <button *ngIf="isCurrentUserProfile()" (click)="showDeleteConfirmationModal(book)"
+                            class="absolute top-5 right-4 text-gray-500 hover:text-gray-700">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-span-1">
-            <div class="my-10 mx-2 sm:mx-10 grid grid-cols-1 lg:grid-cols-2  gap-8">
-                <div class="w-full relative group" *ngFor="let book of user.listedBooks">
-                    <div class="max-w-80 max-h-80 relative overflow-hidden bg-gray-50">
-                        <div class="w-[200px] h-[260px] mx-auto flex justify-center items-center">
-                            <img class="max-h-[200px] shadow-md" [src]="book.coverImage" alt="{{ book.title }} Image" />
+    </div>
+
+    <!-- Modal for form update -->
+    <div tabindex="-1"
+        class="fixed top-0 left-0 p-4 flex items-center justify-center z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full bg-black bg-opacity-40 backdrop-blur-sm"
+        *ngIf="showUpdateModal">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow px-6 py-6 lg:px-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Update Profile</h2>
+                <form #updateForm="ngForm" (ngSubmit)="updateDetails(updateForm)" class="space-y-6">
+                    <div class="flex space-x-4">
+                        <div class="relative flex-1">
+                            <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required
+                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " />
+                            <label for="firstName"
+                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">First
+                                Name</label>
                         </div>
-                        <button *ngIf="!isCurrentUserProfile()" (click)="proposeBookTrade(book)"
-                            class="absolute top-5 right-4"><i
-                                class="fa-solid fa-envelope px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-base rounded group-hover:scale-110 transition duration-300"></i></button>
-                        <div class="absolute top-5 left-4">
-                            <div
-                                class="px-2 py-1 bg-gray-800 text-white hover:bg-gray-950 text-sm font-semibold rounded">
-                                {{
-                                book.condition }}</div>
+                        <div class="relative flex-1">
+                            <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName"
+                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " />
+                            <label for="lastName"
+                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Last
+                                Name</label>
                         </div>
                     </div>
-                    <div class="max-w-80 py-6 flex flex-col gap-1 border border-t-0 px-2">
-                        <div class="flex flex-col gap-1 items-center justify-between font-titleFont">
-                            <h2 class="text-lg text-gray-900 font-bold text-center leading-tight">{{ book.title }}</h2>
-                            <p class="text-gray-500 text-[14px]">{{ book.author }}</p>
+                    <div class="relative">
+                        <label for="gender"
+                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Gender:</label>
+                        <select id="gender" name="gender" [(ngModel)]="user.gender"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="location" name="location" [(ngModel)]="user.location"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" " (input)="onLocationInput($event)" />
+                        <label for="location"
+                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Location:</label>
+                        <ul *ngIf="locationSuggestions.length"
+                            class="mt-2 bg-white border border-gray-300 border-solid rounded-lg shadow-lg absolute z-50 w-full max-h-40 overflow-y-auto">
+                            <li *ngFor="let suggestion of locationSuggestions"
+                                class="p-2 cursor-pointer hover:bg-gray-100" (click)="selectLocation(suggestion)">
+                                {{ suggestion.display_name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <input type="date" id="birthday" name="birthday" [(ngModel)]="user.birthday"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <label for="birthday"
+                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Birthday:</label>
+                    </div>
+                    <div class="flex space-x-4">
+                        <div class="relative flex-1">
+                            <input type="text" id="instaId" name="instaId" [(ngModel)]="user.instaId"
+                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " />
+                            <label for="instaId"
+                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Instagram
+                                ID</label>
+                        </div>
+                        <div class="relative flex-1">
+                            <input type="text" id="twitterId" name="twitterId" [(ngModel)]="user.twitterId"
+                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " />
+                            <label for="twitterId"
+                                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Twitter
+                                ID</label>
                         </div>
                     </div>
-                    <button *ngIf="isCurrentUserProfile()" (click)="showDeleteConfirmationModal(book)"
-                        class="absolute top-5 right-4 text-gray-500 hover:text-gray-700">
-                        <i class="fa-solid fa-trash"></i>
+                    <div class="relative">
+                        <label for="summary"
+                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Summary:</label>
+                        <textarea id="summary" name="summary" [(ngModel)]="user.summary" rows="4"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit"
+                            class="text-white bg-gradient-to-r from-[#0DBE5E] to-[#0b8b45] hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Save
+                            Changes</button>
+                        <button type="button"
+                            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-[#0DBE5E] focus:z-10 focus:ring-4 focus:ring-gray-200"
+                            (click)="toggleUpdateModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for book delete  -->
+    <div *ngIf="showDeleteModal" tabindex="-1"
+        class="fixed top-0 left-0 p-4 flex items-center justify-center z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full bg-black bg-opacity-40 backdrop-blur-sm">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow">
+                <div class="p-6 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500">
+                        Are you sure you want to delete this book?
+                    </h3>
+                    <button (click)="confirmDelete()" type="button"
+                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                        Yes, I'm sure
+                    </button>
+                    <button (click)="hideDeleteModal()" type="button"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">
+                        No, cancel
                     </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal for form update -->
-<div tabindex="-1"
-    class="fixed top-0 left-0 p-4 flex items-center justify-center z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full bg-black bg-opacity-40 backdrop-blur-sm"
-    *ngIf="showUpdateModal">
-    <div class="relative w-full max-w-md max-h-full">
-        <div class="relative bg-white rounded-lg shadow px-6 py-6 lg:px-8">
-            <h2 class="text-xl font-semibold text-gray-900 mb-4">Update Profile</h2>
-            <form #updateForm="ngForm" (ngSubmit)="updateDetails(updateForm)" class="space-y-6">
-                <div class="flex space-x-4">
-                    <div class="relative flex-1">
-                        <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="firstName"
-                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">First
-                            Name</label>
-                    </div>
-                    <div class="relative flex-1">
-                        <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName"
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="lastName"
-                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Last
-                            Name</label>
-                    </div>
-                </div>
-                <div class="relative">
-                    <label for="gender"
-                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Gender:</label>
-                    <select id="gender" name="gender" [(ngModel)]="user.gender"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="others">Others</option>
-                    </select>
-                </div>
-                <div class="relative">
-                    <input type="text" id="location" name="location" [(ngModel)]="user.location"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " (input)="onLocationInput($event)" />
-                    <label for="location"
-                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Location:</label>
-                    <ul *ngIf="locationSuggestions.length"
-                        class="mt-2 bg-white border border-gray-300 border-solid rounded-lg shadow-lg absolute z-50 w-full max-h-40 overflow-y-auto">
-                        <li *ngFor="let suggestion of locationSuggestions" class="p-2 cursor-pointer hover:bg-gray-100"
-                            (click)="selectLocation(suggestion)">
-                            {{ suggestion.display_name }}
-                        </li>
-                    </ul>
-                </div>
-                <div class="relative">
-                    <input type="date" id="birthday" name="birthday" [(ngModel)]="user.birthday"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                    <label for="birthday"
-                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Birthday:</label>
-                </div>
-                <div class="flex space-x-4">
-                    <div class="relative flex-1">
-                        <input type="text" id="instaId" name="instaId" [(ngModel)]="user.instaId"
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="instaId"
-                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Instagram
-                            ID</label>
-                    </div>
-                    <div class="relative flex-1">
-                        <input type="text" id="twitterId" name="twitterId" [(ngModel)]="user.twitterId"
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="twitterId"
-                            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Twitter
-                            ID</label>
-                    </div>
-                </div>
-                <div class="relative">
-                    <label for="summary"
-                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Summary:</label>
-                    <textarea id="summary" name="summary" [(ngModel)]="user.summary" rows="4"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "></textarea>
-                </div>
-                <div class="text-right">
-                    <button type="submit"
-                        class="text-white bg-gradient-to-r from-[#0DBE5E] to-[#0b8b45] hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Save
-                        Changes</button>
-                    <button type="button"
-                        class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-[#0DBE5E] focus:z-10 focus:ring-4 focus:ring-gray-200"
-                        (click)="toggleUpdateModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for book delete  -->
-<div *ngIf="showDeleteModal" tabindex="-1"
-    class="fixed top-0 left-0 p-4 flex items-center justify-center z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full bg-black bg-opacity-40 backdrop-blur-sm">
-    <div class="relative w-full max-w-md max-h-full">
-        <div class="relative bg-white rounded-lg shadow">
-            <div class="p-6 text-center">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500">
-                    Are you sure you want to delete this book?
-                </h3>
-                <button (click)="confirmDelete()" type="button"
-                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                    Yes, I'm sure
-                </button>
-                <button (click)="hideDeleteModal()" type="button"
-                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">
-                    No, cancel
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
+<app-footer></app-footer>
