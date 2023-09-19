@@ -68,6 +68,7 @@ export class BookStoreComponent {
 
   logout() {
     this.authService.signOut().then(() => {
+      this.currentUserUID = null;
       console.log('Logout Successfull');
       this.toastr.success('Logged out successfully!', 'Success');
       this.router.navigate(['/']);
