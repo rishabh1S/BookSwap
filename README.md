@@ -113,4 +113,4 @@ ng serve
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/rishabh1S/BookSwap/blob/main/LICENSE)
